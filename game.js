@@ -205,12 +205,12 @@ if (q.room) {
     });
     
     content.innerHTML = `
-        <img src="/favicon.png">
+        <img src="favicon.png">
         <h3>Waiting for another player...</h3>
     `;
 } else {
     content.innerHTML = `
-        <img src="/favicon.png">
+        <img src="favicon.png">
         <h1>Pong XTRA</h1>
         <h3>An online-multiplayer pong game</h3>
         <br>
