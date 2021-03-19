@@ -1,0 +1,11 @@
+{
+  "name": "pongxtra",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "npx serve"
+  },
+  "keywords": [],
+  "author": "JanCraft",
+  "license": "ISC"
+}
