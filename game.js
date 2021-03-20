@@ -30,6 +30,7 @@ let gameinfo = {
     ballY: 240,
     ballMX: -1,
     ballMY: -1,
+    ballInv: 0,
     
     ballSpeed: 256
 };
@@ -91,10 +92,12 @@ function rungame(now) {
     if (gameinfo.ballY < 16) gameinfo.ballMY *= -1;
     if (gameinfo.ballY > 480 - 16) gameinfo.ballMY *= -1;
 
-    if (checkPaddleCollision(16, gameinfo.left - 64) || checkPaddleCollision(640 - 16 - 24, gameinfo.right - 64)) {
+    if (gameinfo.ballInv < 0 && (checkPaddleCollision(16, gameinfo.left - 64) || checkPaddleCollision(640 - 16 - 24, gameinfo.right - 64))) {
         gameinfo.ballMX *= -1;
         gameinfo.ballSpeed *= 1.01;
+        gameinfo.ballInv = 0.5;
     }
+    gameinfo.ballInv -= deltaTime;
 
     if (gNET.isHost) {
         if (gameinfo.ballX < 16 || gameinfo.ballX > 640 - 16) {
@@ -150,7 +153,7 @@ if (q.room) {
     console.log("Room => " + q.room);
     console.log("UserID => " + userid);
     
-    gNET.connect("JanCraft/pongxtra-" + q.room, userid);
+    gNET.connect("JanCraft-pongxtra-" + q.room, userid);
     gNET.on('client/packet', ({data, source}) => {
         gNET.broadcast({source, data});
     });
